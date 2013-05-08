@@ -1,19 +1,19 @@
 
 public class Grading {
-	public void StudentAnswer(int answer[],int student[][],char yesOrNot[][], int studentSc[]){
+	public void StudentAnswer(int answer[],int student[][],char yesOrNot[][], double studentSc[], double score[]){
 		for(int i=0;i<student.length;i++){
 			for(int j=0;j<student[i].length;j++){
-				if(student[i][j]==answer[j]){//Á¤´ä°ú °°À» ¶§
-					studentSc[i]=studentSc[i]+10;//ÇÐ»ý[i]ÀÇ Á¡¼ö¸¦ 10Á¡¾¿ ´õÇØÁÜ
-					yesOrNot[i][j]='O';//Á¤¿ÀÇ¥¿¡ O¸¦ ÀÔ·Â
-				}else yesOrNot[i][j]='X';//Á¤´äÀÌ ¾Æ´Ò ¶§ Á¤¿ÀÇ¥¿¡ X¸¦ ÀÔ·Â
+				if(student[i][j]==answer[j]){//ì •ë‹µê³¼ ê°™ì„ ë•Œ
+					studentSc[i]=studentSc[i]+score[i];//í•™ìƒ[i]ì˜ ì ìˆ˜ë¥¼ 10ì ì”© ë”í•´ì¤Œ
+					yesOrNot[i][j]='O';//ì •ì˜¤í‘œì— Oë¥¼ ìž…ë ¥
+				}else yesOrNot[i][j]='X';//ì •ë‹µì´ ì•„ë‹ ë•Œ ì •ì˜¤í‘œì— Xë¥¼ ìž…ë ¥
 			}
 		}
 	}
-	public void Print(int studentSc[], char yesOrNot[][]){
+	public void Print(double studentSc[], char yesOrNot[][]){
 		for(int i=0;i<studentSc.length;i++){
-			System.out.println("ÇÐ»ý "+(i+1)+"ÀÇ Á¡¼ö : "+studentSc[i]+"Á¡");//°¢ ÇÐ»ýÀÇ ÃÑÁ¡
-			System.out.print("==>Á¤¿ÀÇ¥ : ");
+			System.out.println("í•™ìƒ "+(i+1)+"ì˜ ì ìˆ˜ : "+studentSc[i]+"ì ");//ê° í•™ìƒì˜ ì´ì 
+			System.out.print("==>ì •ì˜¤í‘œ : ");
 				for(int j=0;j<yesOrNot[i].length;j++){
 					System.out.print(yesOrNot[i][j]+" ");
 				}
@@ -21,7 +21,8 @@ public class Grading {
 		}
 	}
 	public static void main(String[] args) {
-		//¹è¿­ Ãß°¡ÇØ¼­ doubleÇØ¼­ ÃÑÁ¡ÀÌ 100Á¡À¸·Î ¸¸µé¾î¼­ °¢¹®Á¦¸¦ Á¡¼ö¸¦ ´Ù¸£°ÔÇØ¼­..
+		System.out.println("ì‹œìž‘í•©ë‹ˆë‹¤.");
+		//ë°°ì—´ ì¶”ê°€í•´ì„œ doubleí•´ì„œ ì´ì ì´ 100ì ìœ¼ë¡œ ë§Œë“¤ì–´ì„œ ê°ë¬¸ì œë¥¼ ì ìˆ˜ë¥¼ ë‹¤ë¥´ê²Œí•´ì„œ..
 		int student[][]={
 				{1,3,2,4,3,1,4,2,2,1},
 				{3,2,4,2,2,1,1,3,4,1},
@@ -30,21 +31,22 @@ public class Grading {
 				{3,1,1,2,4,1,2,3,1,3}
 		};		
 		int answer[]=new int[10];
-		int studentSc[]=new int[5];
+		double studentSc[]={0,0,0,0,0};
 		char yesOrNot[][]=new char[5][10];
+		double score[]={4.5, 6.6, 8.4, 7.6, 9.2, 9.8, 13.4, 13.6, 10, 16.9};
 		
 		if(args.length!=answer.length){
-			System.out.println("Á¤´äÀÇ °³¼ö°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("ì •ë‹µì˜ ê°œìˆ˜ê°€ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		
-		//Á¤´äÀÔ·Â
+		//ì •ë‹µìž…ë ¥
 		for(int i=0;i<answer.length;i++){
 			answer[i]=Integer.parseInt(args[i]);
 		}
 		
 		Grading a=new Grading();
 	
-		a.StudentAnswer(answer,student,yesOrNot, studentSc);
+		a.StudentAnswer(answer,student,yesOrNot, studentSc, score);
 		
 		a.Print(studentSc, yesOrNot);
 		
